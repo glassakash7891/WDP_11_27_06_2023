@@ -66,9 +66,20 @@ This is 11th batch weekdays
         > terminate block
 > gc
 > regex
+> programming paradigm:
+    > top line programming
+    > procedural programming/functional programming
+    > object oriented programming structure
 > OOPS
-> blueprint(class)
-    > constructor
-        > instance variable
-    > class variable
+    > class(blueprint)
+        > class variable
+        > instance variablr
+        > class method
+        > static method
+    > object
+    > encapsulation
+    > abstraction(project blueprint)
+    > inheritance
+    > polymorphise
+
 > 
