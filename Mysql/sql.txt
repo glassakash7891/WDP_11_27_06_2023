@@ -1,0 +1,677 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    ->
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 3
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd12               |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use wd12;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_wd12 |
++----------------+
+| college        |
+| collegee       |
+| hostel         |
+| restra         |
++----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | Kunal    |  675.43 |
+|    2 | Krishna  |   32.44 |
+|    3 | Rawat    |  123.33 |
+|    4 | Akash    |  223.44 |
+|    5 | Sumit    |  232.44 |
+|    6 | Rupesh   |   13.33 |
+|    7 | Diya     |  223.44 |
+|    8 | Rana     | 33332.3 |
+|    9 | Yuvraj   | 534.554 |
+|   10 | Mohan    |  324.54 |
+|   11 | Manpreet | 3423.43 |
+|   12 | Vishal   |   32.44 |
++------+----------+---------+
+12 rows in set (0.00 sec)
+
+mysql> insert into restra values(13,"Rohan",100);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | Kunal    |  675.43 |
+|    2 | Krishna  |   32.44 |
+|    3 | Rawat    |  123.33 |
+|    4 | Akash    |  223.44 |
+|    5 | Sumit    |  232.44 |
+|    6 | Rupesh   |   13.33 |
+|    7 | Diya     |  223.44 |
+|    8 | Rana     | 33332.3 |
+|    9 | Yuvraj   | 534.554 |
+|   10 | Mohan    |  324.54 |
+|   11 | Manpreet | 3423.43 |
+|   12 | Vishal   |   32.44 |
+|   13 | Rohan    |     100 |
++------+----------+---------+
+13 rows in set (0.00 sec)
+
+mysql> alter table restra add total_bill float;
+Query OK, 0 rows affected (0.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+------------+
+| sn   | name     | bill    | total_bill |
++------+----------+---------+------------+
+|    1 | Kunal    |  675.43 |       NULL |
+|    2 | Krishna  |   32.44 |       NULL |
+|    3 | Rawat    |  123.33 |       NULL |
+|    4 | Akash    |  223.44 |       NULL |
+|    5 | Sumit    |  232.44 |       NULL |
+|    6 | Rupesh   |   13.33 |       NULL |
+|    7 | Diya     |  223.44 |       NULL |
+|    8 | Rana     | 33332.3 |       NULL |
+|    9 | Yuvraj   | 534.554 |       NULL |
+|   10 | Mohan    |  324.54 |       NULL |
+|   11 | Manpreet | 3423.43 |       NULL |
+|   12 | Vishal   |   32.44 |       NULL |
+|   13 | Rohan    |     100 |       NULL |
++------+----------+---------+------------+
+13 rows in set (0.00 sec)
+
+mysql> select 100+100*0.18;
++--------------+
+| 100+100*0.18 |
++--------------+
+|       118.00 |
++--------------+
+1 row in set (0.08 sec)
+
+mysql> update restra set total_bill=bill+bill*0.18;
+Query OK, 13 rows affected (0.16 sec)
+Rows matched: 13  Changed: 13  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+------------+
+| sn   | name     | bill    | total_bill |
++------+----------+---------+------------+
+|    1 | Kunal    |  675.43 |    797.007 |
+|    2 | Krishna  |   32.44 |    38.2792 |
+|    3 | Rawat    |  123.33 |    145.529 |
+|    4 | Akash    |  223.44 |    263.659 |
+|    5 | Sumit    |  232.44 |    274.279 |
+|    6 | Rupesh   |   13.33 |    15.7294 |
+|    7 | Diya     |  223.44 |    263.659 |
+|    8 | Rana     | 33332.3 |    39332.1 |
+|    9 | Yuvraj   | 534.554 |    630.774 |
+|   10 | Mohan    |  324.54 |    382.957 |
+|   11 | Manpreet | 3423.43 |    4039.65 |
+|   12 | Vishal   |   32.44 |    38.2792 |
+|   13 | Rohan    |     100 |        118 |
++------+----------+---------+------------+
+13 rows in set (0.00 sec)
+
+mysql> alter table restra modify total_bill int;
+Query OK, 13 rows affected (0.57 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+------------+
+| sn   | name     | bill    | total_bill |
++------+----------+---------+------------+
+|    1 | Kunal    |  675.43 |        797 |
+|    2 | Krishna  |   32.44 |         38 |
+|    3 | Rawat    |  123.33 |        146 |
+|    4 | Akash    |  223.44 |        264 |
+|    5 | Sumit    |  232.44 |        274 |
+|    6 | Rupesh   |   13.33 |         16 |
+|    7 | Diya     |  223.44 |        264 |
+|    8 | Rana     | 33332.3 |      39332 |
+|    9 | Yuvraj   | 534.554 |        631 |
+|   10 | Mohan    |  324.54 |        383 |
+|   11 | Manpreet | 3423.43 |       4040 |
+|   12 | Vishal   |   32.44 |         38 |
+|   13 | Rohan    |     100 |        118 |
++------+----------+---------+------------+
+13 rows in set (0.00 sec)
+
+mysql> alter table restra drop total_bill;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | Kunal    |  675.43 |
+|    2 | Krishna  |   32.44 |
+|    3 | Rawat    |  123.33 |
+|    4 | Akash    |  223.44 |
+|    5 | Sumit    |  232.44 |
+|    6 | Rupesh   |   13.33 |
+|    7 | Diya     |  223.44 |
+|    8 | Rana     | 33332.3 |
+|    9 | Yuvraj   | 534.554 |
+|   10 | Mohan    |  324.54 |
+|   11 | Manpreet | 3423.43 |
+|   12 | Vishal   |   32.44 |
+|   13 | Rohan    |     100 |
++------+----------+---------+
+13 rows in set (0.00 sec)
+
+mysql> update restra set bill=333.323 where sn=8;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | Kunal    |  675.43 |
+|    2 | Krishna  |   32.44 |
+|    3 | Rawat    |  123.33 |
+|    4 | Akash    |  223.44 |
+|    5 | Sumit    |  232.44 |
+|    6 | Rupesh   |   13.33 |
+|    7 | Diya     |  223.44 |
+|    8 | Rana     | 333.323 |
+|    9 | Yuvraj   | 534.554 |
+|   10 | Mohan    |  324.54 |
+|   11 | Manpreet | 3423.43 |
+|   12 | Vishal   |   32.44 |
+|   13 | Rohan    |     100 |
++------+----------+---------+
+13 rows in set (0.00 sec)
+
+mysql> update restra set bill=bill+100;
+Query OK, 13 rows affected (0.14 sec)
+Rows matched: 13  Changed: 13  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | Kunal    |  775.43 |
+|    2 | Krishna  |  132.44 |
+|    3 | Rawat    |  223.33 |
+|    4 | Akash    |  323.44 |
+|    5 | Sumit    |  332.44 |
+|    6 | Rupesh   |  113.33 |
+|    7 | Diya     |  323.44 |
+|    8 | Rana     | 433.323 |
+|    9 | Yuvraj   | 634.554 |
+|   10 | Mohan    |  424.54 |
+|   11 | Manpreet | 3523.43 |
+|   12 | Vishal   |  132.44 |
+|   13 | Rohan    |     200 |
++------+----------+---------+
+13 rows in set (0.00 sec)
+
+mysql> update restra set bill=bill+500 where bill>300;
+Query OK, 8 rows affected (0.15 sec)
+Rows matched: 8  Changed: 8  Warnings: 0
+
+mysql> select * from restra;
++------+----------+---------+
+| sn   | name     | bill    |
++------+----------+---------+
+|    1 | Kunal    | 1275.43 |
+|    2 | Krishna  |  132.44 |
+|    3 | Rawat    |  223.33 |
+|    4 | Akash    |  823.44 |
+|    5 | Sumit    |  832.44 |
+|    6 | Rupesh   |  113.33 |
+|    7 | Diya     |  823.44 |
+|    8 | Rana     | 933.323 |
+|    9 | Yuvraj   | 1134.55 |
+|   10 | Mohan    |  924.54 |
+|   11 | Manpreet | 4023.43 |
+|   12 | Vishal   |  132.44 |
+|   13 | Rohan    |     200 |
++------+----------+---------+
+13 rows in set (0.00 sec)
+
+mysql> truncate restra;
+Query OK, 0 rows affected (0.88 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_wd12 |
++----------------+
+| college        |
+| collegee       |
+| hostel         |
+| restra         |
++----------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table restra;
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_wd12 |
++----------------+
+| college        |
+| collegee       |
+| hostel         |
++----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from college;
++---------------+---------+--------+
+| enrollment_no | name    | branch |
++---------------+---------+--------+
+|             1 | krishna | MCA    |
+|             2 | Rohan   | BCA    |
+|             3 | Monu    | BBA    |
+|             4 | Sonu    | LLB    |
++---------------+---------+--------+
+4 rows in set (0.00 sec)
+
+mysql> create table restra(sn int primary key,name_customer varvhar(50),single_mingle varchar(10),bill float);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varvhar(50),single_mingle varchar(10),bill float)' at line 1
+mysql> create table restra(sn int primary key,name_customer varvhar(50),single_mingle varchar(10),bill float);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varvhar(50),single_mingle varchar(10),bill float)' at line 1
+mysql> create table restra(sn int primary key,name_customer varchar(50),single_mingle varchar(10),bill float);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> insert into restra values(1,"manpreet","mingle",4500.00);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into restra values(2,"kashish","single",100.00);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into restra values(3,"mujahid","mingle",3100.34);
+Query OK, 1 row affected (0.25 sec)
+
+mysql> insert into restra values(4,"pawdhowani","
+
+
+
+
+
+
+
+
+
+
+how to join tables
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd12               |
+| world              |
++--------------------+
+7 rows in set (0.09 sec)
+
+mysql> use wd12;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_wd12 |
++----------------+
+| college        |
+| collegee       |
+| hostel         |
+| restra         |
++----------------+
+4 rows in set (0.10 sec)
+
+mysql> select * from restra;
++----+---------------+---------------+---------+
+| sn | name_customer | single_mingle | bill    |
++----+---------------+---------------+---------+
+|  1 | manpreet      | mingle        |    4500 |
+|  2 | kashish       | single        |     100 |
+|  3 | mujahid       | mingle        | 3100.34 |
++----+---------------+---------------+---------+
+3 rows in set (0.12 sec)
+
+mysql> insert into restra values(4,"adarsh","mingle",0);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from restra;
++----+---------------+---------------+---------+
+| sn | name_customer | single_mingle | bill    |
++----+---------------+---------------+---------+
+|  1 | manpreet      | mingle        |    4500 |
+|  2 | kashish       | single        |     100 |
+|  3 | mujahid       | mingle        | 3100.34 |
+|  4 | adarsh        | mingle        |       0 |
++----+---------------+---------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from restra where single_mingle="mingle";
++----+---------------+---------------+---------+
+| sn | name_customer | single_mingle | bill    |
++----+---------------+---------------+---------+
+|  1 | manpreet      | mingle        |    4500 |
+|  3 | mujahid       | mingle        | 3100.34 |
+|  4 | adarsh        | mingle        |       0 |
++----+---------------+---------------+---------+
+3 rows in set (0.07 sec)
+
+mysql> select * from restra where single_mingle="single";
++----+---------------+---------------+------+
+| sn | name_customer | single_mingle | bill |
++----+---------------+---------------+------+
+|  2 | kashish       | single        |  100 |
++----+---------------+---------------+------+
+1 row in set (0.00 sec)
+
+mysql> create table govt(emp_id int primary key,name char(50) not null,position varchar(30) not null);
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> create table facility(emp int primary key,facility_name varchar(50));
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> alter table facility modify facility_name varchar(50) not null;
+Query OK, 0 rows affected (1.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into govt values(1,"Kunal","IAS"),(2,"Manpreet","COLLECTOR"),(3,"Kashish","MCD"),(4,"Rawat","CHEF");
+Query OK, 4 rows affected (0.14 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into facility values(1,"Accomodation");
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into facility values(4,"Medical");
+Query OK, 1 row affected (0.57 sec)
+
+mysql> select * from facility;
++-----+---------------+
+| emp | facility_name |
++-----+---------------+
+|   1 | Accomodation  |
+|   4 | Medical       |
++-----+---------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into facility values(20,"Accomodation");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from facility;
++-----+---------------+
+| emp | facility_name |
++-----+---------------+
+|   1 | Accomodation  |
+|   4 | Medical       |
+|  20 | Accomodation  |
++-----+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from govt inner join facility on govt.emp_id=facility.emp;
++--------+-------+----------+-----+---------------+
+| emp_id | name  | position | emp | facility_name |
++--------+-------+----------+-----+---------------+
+|      1 | Kunal | IAS      |   1 | Accomodation  |
+|      4 | Rawat | CHEF     |   4 | Medical       |
++--------+-------+----------+-----+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select govt.emp_id,govt.name,govt.position,facility.facility_name from govt inner join facility on govt.emp_id=facility.emp;
++--------+-------+----------+---------------+
+| emp_id | name  | position | facility_name |
++--------+-------+----------+---------------+
+|      1 | Kunal | IAS      | Accomodation  |
+|      4 | Rawat | CHEF     | Medical       |
++--------+-------+----------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select g.emp_id,g.name,g.position,f.facility_name from govt as g inner join facility as f on g.emp_id=f.emp;
++--------+-------+----------+---------------+
+| emp_id | name  | position | facility_name |
++--------+-------+----------+---------------+
+|      1 | Kunal | IAS      | Accomodation  |
+|      4 | Rawat | CHEF     | Medical       |
++--------+-------+----------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select g.emp_id,g.name,g.position,f.facility_name from govt as g inner join facility as f on g.emp_id=f.emp;
++--------+-------+----------+---------------+
+| emp_id | name  | position | facility_name |
++--------+-------+----------+---------------+
+|      1 | Kunal | IAS      | Accomodation  |
+|      4 | Rawat | CHEF     | Medical       |
++--------+-------+----------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select g.emp_id,g.name,g.position,f.facility_name from govt as g left join facility as f on g.emp_id=f.emp;
++--------+----------+-----------+---------------+
+| emp_id | name     | position  | facility_name |
++--------+----------+-----------+---------------+
+|      1 | Kunal    | IAS       | Accomodation  |
+|      2 | Manpreet | COLLECTOR | NULL          |
+|      3 | Kashish  | MCD       | NULL          |
+|      4 | Rawat    | CHEF      | Medical       |
++--------+----------+-----------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select g.emp_id,g.name,g.position,f.facility_name from govt as g left join facility as f on g.emp_id=f.emp union select g.emp_id,g.name,g.position,f.facility_name from govt as g right join facility as f on g.emp_id=f.emp;
++--------+----------+-----------+---------------+
+| emp_id | name     | position  | facility_name |
++--------+----------+-----------+---------------+
+|      1 | Kunal    | IAS       | Accomodation  |
+|      2 | Manpreet | COLLECTOR | NULL          |
+|      3 | Kashish  | MCD       | NULL          |
+|      4 | Rawat    | CHEF      | Medical       |
+|   NULL | NULL     | NULL      | Accomodation  |
++--------+----------+-----------+---------------+
+5 rows in set (0.08 sec)
+
+mysql> select g.emp_id,g.name,g.position,f.facility_name from govt as g right join facility as f on g.emp_id=f.emp;
++--------+-------+----------+---------------+
+| emp_id | name  | position | facility_name |
++--------+-------+----------+---------------+
+|      1 | Kunal | IAS      | Accomodation  |
+|      4 | Rawat | CHEF     | Medical       |
+|   NULL | NULL  | NULL     | Accomodation  |
++--------+-------+----------+---------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd12               |
+| world              |
++--------------------+
+7 rows in set (0.43 sec)
+
+mysql> use w12;
+ERROR 1049 (42000): Unknown database 'w12'
+mysql> use wd12;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_wd12 |
++----------------+
+| college        |
+| collegee       |
+| facility       |
+| govt           |
+| hostel         |
+| restra         |
++----------------+
+6 rows in set (0.15 sec)
+
+mysql> create table salary(employee_id int primary key,salary float);
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> insert into salary value(1,60000.00),(4,69999.78),(2,56634.654),(3,436676.23);
+Query OK, 4 rows affected (0.19 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from salary;
++-------------+---------+
+| employee_id | salary  |
++-------------+---------+
+|           1 |   60000 |
+|           2 | 56634.7 |
+|           3 |  436676 |
+|           4 | 69999.8 |
++-------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from govt inner join facility on govt.emp inner join salary on govt.em_id=salary.employee_id;
+ERROR 1054 (42S22): Unknown column 'govt.em_id' in 'on clause'
+mysql> select * from govt inner join facility on govt.emp_id=facility.emp inner join salary on govt.em_id=salary.employee_id;
+ERROR 1054 (42S22): Unknown column 'govt.em_id' in 'on clause'
+mysql> select * from govt inner join facility on govt.emp_id=facility.emp inner join salary on govt.emp_id=salary.employee_id;
++--------+-------+----------+-----+---------------+-------------+---------+
+| emp_id | name  | position | emp | facility_name | employee_id | salary  |
++--------+-------+----------+-----+---------------+-------------+---------+
+|      1 | Kunal | IAS      |   1 | Accomodation  |           1 |   60000 |
+|      4 | Rawat | CHEF     |   4 | Medical       |           4 | 69999.8 |
++--------+-------+----------+-----+---------------+-------------+---------+
+2 rows in set (0.10 sec)
+
+mysql> select * from govt left join facility on govt.emp_id=facility.emp left join salary on govt.emp_id=salary.employee_id;
++--------+----------+-----------+------+---------------+-------------+---------+
+| emp_id | name     | position  | emp  | facility_name | employee_id | salary  |
++--------+----------+-----------+------+---------------+-------------+---------+
+|      1 | Kunal    | IAS       |    1 | Accomodation  |           1 |   60000 |
+|      2 | Manpreet | COLLECTOR | NULL | NULL          |           2 | 56634.7 |
+|      3 | Kashish  | MCD       | NULL | NULL          |           3 |  436676 |
+|      4 | Rawat    | CHEF      |    4 | Medical       |           4 | 69999.8 |
++--------+----------+-----------+------+---------------+-------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from salary left join facility on salary.employee_id=facility.emp left join govt on salary.employee_id=govt.emp_id;
++-------------+---------+------+---------------+--------+----------+-----------+
+| employee_id | salary  | emp  | facility_name | emp_id | name     | position  |
++-------------+---------+------+---------------+--------+----------+-----------+
+|           1 |   60000 |    1 | Accomodation  |      1 | Kunal    | IAS       |
+|           2 | 56634.7 | NULL | NULL          |      2 | Manpreet | COLLECTOR |
+|           3 |  436676 | NULL | NULL          |      3 | Kashish  | MCD       |
+|           4 | 69999.8 |    4 | Medical       |      4 | Rawat    | CHEF      |
++-------------+---------+------+---------------+--------+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from facility left join salary on facility.emp=salary.employee_id left join govt on facility.emp=govt.emp_id;
++-----+---------------+-------------+---------+--------+-------+----------+
+| emp | facility_name | employee_id | salary  | emp_id | name  | position |
++-----+---------------+-------------+---------+--------+-------+----------+
+|   1 | Accomodation  |           1 |   60000 |      1 | Kunal | IAS      |
+|   4 | Medical       |           4 | 69999.8 |      4 | Rawat | CHEF     |
+|  20 | Accomodation  |        NULL |    NULL |   NULL | NULL  | NULL     |
++-----+---------------+-------------+---------+--------+-------+----------+
+3 rows in set (0.00 sec)
+
+
+
+
+mysql> --foreign key, composite key
+
+mysql> create table UniversityPoly(enroll varchar(6), name varchar(50) not null,branch varchar(30) not null);
+Query OK, 0 rows affected (1.76 sec)
+
+mysql> alter table UniversityPoly modify enroll varchar(6) primary key;
+Query OK, 0 rows affected (1.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc UniversityPoly;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| enroll | varchar(6)  | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| branch | varchar(30) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.10 sec)
+
+mysql> insert into RMHall values("GT2556","A32");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from RNHall;
+ERROR 1146 (42S02): Table 'wd12.rnhall' doesn't exist
+mysql> select * from RMHall;
++--------+------+
+| enroll | room |
++--------+------+
+| GT2556 | A32  |
++--------+------+
+1 row in set (0.00 sec)
+
+---comopiste key 
+
+
+mysql> create table counting(name varchar(50),father varchar(50),mother char(50),hn varchar(50),address varchar(150), primary key(name,father,mother,hn,address));
+Query OK, 0 rows affected (1.08 sec)
+
+mysql> desc counting;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| name    | varchar(50)  | NO   | PRI | NULL    |       |
+| father  | varchar(50)  | NO   | PRI | NULL    |       |
+| mother  | char(50)     | NO   | PRI | NULL    |       |
+| hn      | varchar(50)  | NO   | PRI | NULL    |       |
+| address | varchar(150) | NO   | PRI | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into counting values("krishna","sunil","suman","Anand bhawan-94","haiwatpur ballia UP");
+Query OK, 1 row affected (0.41 sec)
+
+mysql> select * from counting;
++---------+--------+--------+-----------------+---------------------+
+| name    | father | mother | hn              | address             |
++---------+--------+--------+-----------------+---------------------+
+| krishna | sunil  | suman  | Anand bhawan-94 | haiwatpur ballia UP |
++---------+--------+--------+-----------------+---------------------+
+1 row in set (0.00 sec)
+
+
+mysql> create table RMHall(enroll varchar(6) primary key, room varchar(5), foreign key(enroll) references UniversityPoly(enroll));
+Query OK, 0 rows affected (1.37 sec)
+
